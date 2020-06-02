@@ -21,6 +21,16 @@ ifneq ($(CONFIG_NET_9P),)
       echo "lttng-probe-9p.o" ; fi;)
 endif # CONFIG_NET_9P
 
+ifneq ($(CONFIG_F2FS_FS),)
+  f2fs_dep = $(srctree)/fs/f2fs/*.h
+  f2fs = lttng-probe-f2fs.o
+  ifeq ($(wildcard $(f2fs_dep)),)
+    $(warning Files $(f2fs_dep) not found. Probe "f2fs" is disabled. Use full kernel source tree to enable it.)
+    f2fs =
+  endif # $(wildcard $(f2fs_dep))
+  obj-$(CONFIG_LTTNG) += $(f2fs)
+endif # CONFIG_F2FS_FS
+
 i2c_dep = $(srctree)/include/trace/events/i2c.h
 ifneq ($(wildcard $(i2c_dep)),)
   obj-$(CONFIG_LTTNG) += lttng-probe-i2c.o

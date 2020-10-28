@@ -677,6 +677,61 @@ LTTNG_TRACEPOINT_EVENT_INSTANCE(f2fs_sync_dirty_inodes, f2fs_sync_dirty_inodes_e
     TP_ARGS(sb, type, count)
 )
 
+/* TRACE_EVENT for KSC20 */
+LTTNG_TRACEPOINT_EVENT(f2fs_build_free_nids_enter,
+    TP_PROTO(unsigned int prealloc_nid, unsigned int free_nid),
+    TP_ARGS(prealloc_nid, free_nid),
+    TP_FIELDS(
+        ctf_integer(unsigned int, nid_cnt_prealloc, prealloc_nid)
+        ctf_integer(unsigned int, nid_cnt_free, free_nid)
+    )
+)
+
+LTTNG_TRACEPOINT_EVENT(f2fs_build_free_nids_exit,
+    TP_PROTO(unsigned int exit_step, unsigned int prealloc_nid, unsigned int free_nid),
+    TP_ARGS(exit_step, prealloc_nid, free_nid),
+    TP_FIELDS(
+        ctf_integer(unsigned int, step, exit_step)
+        ctf_integer(unsigned int, nid_cnt_prealloc, prealloc_nid)
+        ctf_integer(unsigned int, nid_cnt_free, free_nid)
+    )
+)
+
+LTTNG_TRACEPOINT_EVENT(f2fs_scan_free_nid_bits_enter,
+    TP_PROTO(unsigned int prealloc_nid, unsigned int free_nid),
+    TP_ARGS(prealloc_nid, free_nid),
+    TP_FIELDS(
+        ctf_integer(unsigned int, nid_cnt_prealloc, prealloc_nid)
+        ctf_integer(unsigned int, nid_cnt_free, free_nid)
+    )
+)
+
+LTTNG_TRACEPOINT_EVENT(f2fs_scan_free_nid_bits_exit,
+    TP_PROTO(unsigned int prealloc_nid, unsigned int free_nid),
+    TP_ARGS(prealloc_nid, free_nid),
+    TP_FIELDS(
+        ctf_integer(unsigned int, nid_cnt_prealloc, prealloc_nid)
+        ctf_integer(unsigned int, nid_cnt_free, free_nid)
+    )
+)
+
+LTTNG_TRACEPOINT_EVENT(f2fs_scan_free_nid_nat_block_enter,
+    TP_PROTO(unsigned int prealloc_nid, unsigned int free_nid),
+    TP_ARGS(prealloc_nid, free_nid),
+    TP_FIELDS(
+        ctf_integer(unsigned int, nid_cnt_prealloc, prealloc_nid)
+        ctf_integer(unsigned int, nid_cnt_free, free_nid)
+    )
+)
+
+LTTNG_TRACEPOINT_EVENT(f2fs_scan_free_nid_nat_block_exit,
+    TP_PROTO(unsigned int prealloc_nid, unsigned int free_nid),
+    TP_ARGS(prealloc_nid, free_nid),
+    TP_FIELDS(
+        ctf_integer(unsigned int, nid_cnt_prealloc, prealloc_nid)
+        ctf_integer(unsigned int, nid_cnt_free, free_nid)
+    )
+)
 #endif //!defined(LTTNG_TRACE_F2FS_H) || defined(TRACE_HEADER_MULTI_READ)
 
 /* This part must be outside protection */
